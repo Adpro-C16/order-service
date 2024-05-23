@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package services;
+
+service AuthService {
+    rpc verify_auth(VerifyRequest) returns (VerifyResponse) {}
+    rpc verify_access(RBACRequest) returns (RBACResponse) {}
+    rpc get_claims(ClaimsRequest) returns (ClaimsResponse) {}
+}
+
+service UserService {
+    rpc update_balance(UpdateBalanceRequest) returns (UpdateBalanceResponse) {}
+}
+
+enum TransactionType {
+    DEPOSIT = 0;
+    WITHDRAW = 1;
+}
+
+message UpdateBalanceRequest {
+    string token = 1;
+    int32 amount = 2;
+    TransactionType transaction_type = 3;
+}
+
+message UpdateBalanceResponse {
+    bool success = 1;
+    int32 new_balance = 2;
+}
+
+message ClaimsRequest {
+    string token = 1;
+}
+
+message ClaimsResponse {
+    int32 user_id = 1;
+    string role = 2;
+}
+
+message RBACRequest {
+    string token = 1;
+    string role = 2;
+}
+
+message RBACResponse {
+    bool is_valid = 1;
+}
+
+message VerifyRequest {
+    string token = 1;
+}
+
+message VerifyResponse {
+    bool is_valid = 1;
+}
+
+// message CheckRoleRequest {
+//     string token = 1;
+// }
+
+// message CheckRoleResponse {
+//     bool is_valid = 1;
+// }    
