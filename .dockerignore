@@ -1,0 +1,6 @@
+image-*.png
+target
+Dockerfile
+.gitignore
+.dockerignore
+.git
