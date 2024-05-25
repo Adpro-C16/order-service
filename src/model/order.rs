@@ -1,5 +1,6 @@
 use std::{fmt::Display, str::FromStr};
 
+use chrono::NaiveDateTime;
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
@@ -10,7 +11,7 @@ pub struct Order {
     pub subtotal: i32,
     pub quantity: i32,
     pub status: OrderStatus,
-    pub created_at: chrono::DateTime<chrono::Utc>,
+    pub created_at: NaiveDateTime,
 }
 
 #[derive(Serialize, Deserialize)]
