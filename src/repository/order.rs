@@ -13,9 +13,12 @@ pub struct OrderRepository;
 
 impl OrderRepository {
     pub async fn find_all(pool: &sqlx::PgPool, id: i32) -> Result<Vec<Order>> {
-        let query = query!("SELECT * FROM orders WHERE user_id = $1", id)
-            .fetch_all(pool)
-            .await;
+        let query = query!(
+            "SELECT * FROM orders WHERE user_id = $1 ORDER BY created_at DESC",
+            id
+        )
+        .fetch_all(pool)
+        .await;
         match query {
             Ok(orders) => Ok(orders
                 .iter()

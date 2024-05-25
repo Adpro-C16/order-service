@@ -1,6 +1,6 @@
 {
   "db_name": "PostgreSQL",
-  "query": "SELECT * FROM orders WHERE user_id = $1",
+  "query": "SELECT * FROM orders WHERE user_id = $1 ORDER BY created_at DESC",
   "describe": {
     "columns": [
       {
@@ -54,5 +54,5 @@
       true
     ]
   },
-  "hash": "82bcf09770eeb2db1df63e5f10e7e90e2eef7e04d48e682e8c3af1b9497aec4e"
+  "hash": "ea973f41d2c4d94a15baee4accf587b65a2ca4fea4ccdf5258dc7db8202bb171"
 }
