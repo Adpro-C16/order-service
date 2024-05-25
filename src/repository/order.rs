@@ -138,7 +138,7 @@ impl OrderRepository {
         let request = tonic::Request::new(UpdateBalanceRequest {
             amount: order.subtotal,
             token,
-            transaction_type: TransactionType::Withdraw as i32,
+            transaction_type: TransactionType::Withdraw.to_i32(),
         });
         let response = match user_client.update_balance(request).await {
             Ok(response) => response.into_inner(),
