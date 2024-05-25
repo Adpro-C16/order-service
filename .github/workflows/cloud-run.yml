@@ -3,7 +3,7 @@ name: Continous Deployment (CD)
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
