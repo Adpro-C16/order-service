@@ -1,6 +1,6 @@
 {
   "db_name": "PostgreSQL",
-  "query": "INSERT INTO orders (user_id, product_name, quantity, subtotal) VALUES ($1, $2, $3, $4) RETURNING *",
+  "query": "INSERT INTO orders (user_id, product_name, quantity, subtotal, supermarket_id) VALUES ($1, $2, $3, $4, $5) RETURNING *",
   "describe": {
     "columns": [
       {
@@ -15,26 +15,31 @@
       },
       {
         "ordinal": 2,
+        "name": "supermarket_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 3,
         "name": "product_name",
         "type_info": "Varchar"
       },
       {
-        "ordinal": 3,
+        "ordinal": 4,
         "name": "quantity",
         "type_info": "Int4"
       },
       {
-        "ordinal": 4,
+        "ordinal": 5,
         "name": "subtotal",
         "type_info": "Int4"
       },
       {
-        "ordinal": 5,
+        "ordinal": 6,
         "name": "status",
         "type_info": "Varchar"
       },
       {
-        "ordinal": 6,
+        "ordinal": 7,
         "name": "created_at",
         "type_info": "Timestamp"
       }
@@ -44,10 +49,12 @@
         "Int4",
         "Varchar",
         "Int4",
+        "Int4",
         "Int4"
       ]
     },
     "nullable": [
+      false,
       false,
       false,
       false,
@@ -57,5 +64,5 @@
       true
     ]
   },
-  "hash": "ab2f4be6269e7106e63f47c134044beef761a1a668c4ee929089b5389c4e69b5"
+  "hash": "c77b78efdc891cb4b39f64e1f4b6a17930e83ab5c33242282948588a40c09b61"
 }
