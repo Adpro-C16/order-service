@@ -3,6 +3,7 @@
 CREATE TABLE IF NOT EXISTS "orders" (
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
+    supermarket_id INTEGER NOT NULL,
     product_name VARCHAR(255) NOT NULL,
     quantity INTEGER DEFAULT 1,
     subtotal INTEGER NOT NULL,

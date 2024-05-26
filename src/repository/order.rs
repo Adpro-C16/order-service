@@ -25,6 +25,7 @@ impl OrderRepository {
                 .map(|row| Order {
                     id: row.id,
                     user_id: row.user_id,
+                    supermarket_id: row.supermarket_id,
                     product_name: row.product_name.clone(),
                     subtotal: row.subtotal,
                     quantity: row.quantity.unwrap_or_else(|| 0),
@@ -38,11 +39,12 @@ impl OrderRepository {
     }
     pub async fn create(pool: &sqlx::PgPool, order: OrderDto, user_id: i32) -> Option<Order> {
         let query = query!(
-            "INSERT INTO orders (user_id, product_name, quantity, subtotal) VALUES ($1, $2, $3, $4) RETURNING *",
+            "INSERT INTO orders (user_id, product_name, quantity, subtotal, supermarket_id) VALUES ($1, $2, $3, $4, $5) RETURNING *",
             user_id,
             order.product_name,
             order.quantity,
             order.subtotal,
+            order.supermarket_id
         )
         .fetch_one(pool)
         .await;
@@ -50,6 +52,7 @@ impl OrderRepository {
             Ok(row) => Some(Order {
                 id: row.id,
                 user_id: row.user_id,
+                supermarket_id: row.supermarket_id,
                 product_name: row.product_name,
                 subtotal: row.subtotal,
                 quantity: row.quantity.unwrap_or_else(|| 0),
@@ -72,6 +75,7 @@ impl OrderRepository {
             Ok(row) => Some(Order {
                 id: row.id,
                 user_id: row.user_id,
+                supermarket_id: row.supermarket_id,
                 product_name: row.product_name,
                 subtotal: row.subtotal,
                 quantity: row.quantity.unwrap_or_else(|| 0),
@@ -120,6 +124,7 @@ impl OrderRepository {
             Ok(row) => Some(Order {
                 id: row.id,
                 user_id: row.user_id,
+                supermarket_id: row.supermarket_id,
                 product_name: row.product_name,
                 subtotal: row.subtotal,
                 quantity: row.quantity.unwrap_or_else(|| 0),

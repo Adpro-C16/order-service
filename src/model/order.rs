@@ -7,6 +7,7 @@ use serde::{Deserialize, Serialize};
 pub struct Order {
     pub id: i32,
     pub user_id: i32,
+    pub supermarket_id: i32,
     pub product_name: String,
     pub subtotal: i32,
     pub quantity: i32,
@@ -17,6 +18,7 @@ pub struct Order {
 #[derive(Serialize, Deserialize)]
 #[serde(crate = "rocket::serde")]
 pub struct OrderDto {
+    pub supermarket_id: i32,
     pub product_name: String,
     pub subtotal: i32,
     pub quantity: i32,
